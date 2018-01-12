@@ -1,0 +1,16 @@
+{
+    "token": "[YourDicord Self-Bot Token]",
+    "channels": [
+        {
+            "guild": "[GUILD NAME]",
+            "channel": "GUILD CHANNEL",
+            "color": "0xefff00",
+            "id": "[ID of Channel - Not Required]"
+        },
+        {
+            "guild": "[GUILD NAME]",
+            "channel": "[GUILD CHANNEL]",
+        }
+    ],
+    "destChannel": "[DESTINATION CHANNEL ID]"
+}
