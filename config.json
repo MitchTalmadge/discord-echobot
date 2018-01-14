@@ -3,7 +3,7 @@
     "channels": [
         {
             "guild": "[GUILD NAME]",
-            "channel": "GUILD CHANNEL",
+            "channel": "[GUILD CHANNEL]",
             "color": "0xefff00",
             "id": "[ID of Channel - Not Required]"
         },
