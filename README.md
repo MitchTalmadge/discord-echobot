@@ -32,7 +32,7 @@ $ node discobot.js
   
 # TODO:
 
-* edit config with chat commands.
+* more edit config with chat commands.
 
 # From The Author
 
