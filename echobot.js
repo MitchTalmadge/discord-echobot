@@ -83,7 +83,7 @@ function startBot(){
 			var splitMsg = message.content.split(' ');
 			var params = splitMsg
 							.join(' ')
-							.replace('.eb addChannel ','')
+							.replace('.eb ' + splitMsg[1] + ' ','')
 							.split(' ');
 			
 			//message.channel.send(splitMsg[1]);

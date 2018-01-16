@@ -22,7 +22,7 @@ Requires Node.js to be installed
 
 * This can be set here manually or by typing '.here' into the channel you wish to use as the destination channel - This event will be logged to the console.
 
-## Getting started
+# Getting started
 
 Open a command prompt, powershell, or terminal window in the main directory and start the bot with the following command:
 
