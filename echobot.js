@@ -125,12 +125,23 @@ function startBot(){
 							newConfigChannel.color = params[i+1];
 						}
 					}
-
+					
+					if(tryParseJSON(JSON.stringify(newConfigChannel))){
+				
+						config.channels.push(newConfigChannel);
+		
+						fs.writeFile("config.json", JSON.stringify(config), function(err) {
+							if(err) {
+								return console.log(err);
+							}
+							console.log('[' + new Date().toUTCString() + '] - Config file saved successfully. [Source channel added.]');
+						});	
+					}
+				}
 				break;
 
 				case 'reload':
 					config = JSON.parse(fs.readFileSync("config.json"));
-					var forceNoErr = true;
 					console.log('[' + new Date().toUTCString() + '] - Config file reloaded');
 				break;
 
@@ -139,20 +150,7 @@ function startBot(){
 				break;
 			}
 
-			if(tryParseJSON(JSON.stringify(newConfigChannel))){
-				
-				config.channels.push(newConfigChannel);
 
-				fs.writeFile("config.json", JSON.stringify(config), function(err) {
-					if(err) {
-						return console.log(err);
-					}
-					if(!forceNoErr){
-						console.log('[' + new Date().toUTCString() + '] - Config file saved successfully. [Source channel added.]');
-					}
-				});	
-			}
-		}
 
 
 	});
