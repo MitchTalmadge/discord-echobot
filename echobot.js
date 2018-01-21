@@ -137,7 +137,6 @@ function startBot(){
 							console.log('[' + new Date().toUTCString() + '] - Config file saved successfully. [Source channel added.]');
 						});	
 					}
-				}
 				break;
 
 				case 'reload':
@@ -150,7 +149,7 @@ function startBot(){
 				break;
 			}
 
-
+		}
 
 
 	});
