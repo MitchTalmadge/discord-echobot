@@ -67,7 +67,8 @@ OR
 
 ## TODO:
 
-* remove channel with chat commands.
+* list channels with chat commands
+* remove channel with chat commands
 * allow anyone to check process in destination channel
 * list commands with a help command
 
