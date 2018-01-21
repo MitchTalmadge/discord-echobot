@@ -32,21 +32,21 @@ $ node discobot.js
 
 ## Chat Commands
 
-.p - checks if the bot is running
+**.p** - checks if the bot is running
 
-.here - sets destination channel to the channel that it's sent in
+**.here** - sets destination channel to the channel that it's sent in
 
-.eb exit - ends the process
+**.eb exit** - ends the process
 
-.eb reload - reloads the config file without having to restart the bot
+**.eb reload** - reloads the config file without having to restart the bot
 
-.eb addChannel - add a channel
+**.eb addChannel** - add a channel
 
-* -id - ID of channel to add
-* -gc - guild name and channel name seperated by two forward slashes (//)
-* -c - color of the embed for this channel in hexadecimal format (i.e. 0x0f0f0f)
+* **-id** - ID of channel to add
+* **-gc** - guild name and channel name seperated by two forward slashes (//)
+* **-c** - color of the embed for this channel in hexadecimal format (i.e. 0x0f0f0f)
 
-Example:
+**Example:**
 
 ```
 .eb addChannel -id [your channel id]
