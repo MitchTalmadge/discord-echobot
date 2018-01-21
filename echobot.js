@@ -130,6 +130,8 @@ function startBot(){
 
 				case 'reload':
 					config = JSON.parse(fs.readFileSync("config.json"));
+					var forceNoErr = true;
+					console.log('[' + new Date().toUTCString() + '] - Config file reloaded');
 				break;
 
 				case 'exit':
@@ -145,7 +147,9 @@ function startBot(){
 					if(err) {
 						return console.log(err);
 					}
-					console.log('[' + new Date().toUTCString() + '] - Config file saved successfully. [Source channel added.]');
+					if(!forceNoErr){
+						console.log('[' + new Date().toUTCString() + '] - Config file saved successfully. [Source channel added.]');
+					}
 				});	
 			}
 		}
