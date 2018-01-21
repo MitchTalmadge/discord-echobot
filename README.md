@@ -20,7 +20,7 @@ Requires Node.js to be installed
 
 ### destChannel:
 
-* This can be set here manually or by typing '.here' into the channel you wish to use as the destination channel - This event will be logged to the console.
+* This can be set here manually or by typing '.here' into the channel you wish to use as the destination channel 
 
 ## Getting started:
 
@@ -32,15 +32,15 @@ $ node discobot.js
 
 ## Chat Commands
 
-### .p - Checks if the bot is running
+.p - checks if the bot is running
 
-### .here - sets destination channel to the channel that it's sent in
+.here - sets destination channel to the channel that it's sent in
 
-### .eb exit - ends the process
+.eb exit - ends the process
 
-### .eb reload - reloads the config file without having to restart the bot
+.eb reload - reloads the config file without having to restart the bot
 
-### .eb addChannel - add a channel
+.eb addChannel - add a channel
 
 * -id - ID of channel to add
 * -gc - guild name and channel name seperated by two forward slashes (//)
