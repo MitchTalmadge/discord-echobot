@@ -1,7 +1,7 @@
-console.log('EchoBot Started.');
+console.log('[' + new Date().toUTCString() + '] - Loading...');
 
 const fs = require("fs");
-const config = JSON.parse(fs.readFileSync("config.json"));
+var config = JSON.parse(fs.readFileSync("config.json"));
 
 //console.log(config);
 
@@ -15,7 +15,7 @@ function startBot(){
 	var dest = 0;
 
 	bot.on('ready', function(){
-		console.log('I am ready!');
+		console.log('[' + new Date().toUTCString() + '] - Bot Ready.');
 		dest = bot.channels.get(config.destChannel);
 	});
 
@@ -29,19 +29,27 @@ function startBot(){
 				if(err) {
 					return console.log(err);
 				}
-				console.log("Config file saved successfully. [Destination channel added or updated]");
+				console.log('[' + new Date().toUTCString() + '] - Config file saved successfully. [Destination channel updated]');
 			});
 		}
 
 		if(message.content == ".p" && message.author.id == bot.user.id){
 			message.channel.send('Process running.');
-			console.log('Process Check');
+			console.log('[' + new Date().toUTCString() + '] - Process Check');
 		}
 
 
 		if(message.channel.type == "text" && !message.content.startsWith('.eb ')){
 			for (var i = 0; i < config.channels.length; i++) {
 				if(message.channel.id == config.channels[i].id || (message.guild.name == config.channels[i].guild && message.channel.name == config.channels[i].channel)){
+					var imgUrl = message.attachments.array();
+					var imgAttached = false;
+
+					if(imgUrl.length){
+						imgUrl = imgUrl[0].proxyURL;
+						imgAttached = true;
+					}					
+
 					if(!config.channels[i].hasOwnProperty('id')){
 						config.channels[i].id = message.channel.id;
 
@@ -49,21 +57,20 @@ function startBot(){
 							if(err) {
 								return console.log(err);
 							}
-							console.log(" - Config file saved successfully. [Source channel ID added.]");
+							console.log('[' + new Date().toUTCString() + '] - Config file saved successfully. [Source channel ID added.]');
 						});
 					}
-					console.log('Call: ' + message.guild.name + ' : ' + message.channel.name);
+					console.log('[' + new Date().toUTCString() + '] - Call: ' + message.guild.name + ' : ' + message.channel.name);
 
 					if(dest){
 						embedColor = 3447003;
 
 						if(typeof config.channels[i].color !== "undefined"){
 							embedColor = parseInt(config.channels[i].color);
-							console.log(embedColor);
 						}
 
-						dest.send({
-							embed: {
+						var richEmbed = new Discord.RichEmbed(
+							{
 								color: embedColor,
 								title: "Call Made",
 								description: message.content.replace('@everyone ', '').replace('@deleted-role','').replace('@',''),
@@ -73,8 +80,14 @@ function startBot(){
 										value: message.guild.name + ' : ' + message.channel.name
 									}
 								]
-							}
-						});
+							});
+						
+						if(imgAttached){
+							richEmbed.setImage(imgUrl);
+						}
+						
+
+						dest.send({embed: richEmbed});
 					}//if dest
 				}//if channel
 			}//for	
@@ -115,19 +128,26 @@ function startBot(){
 
 				break;
 
+				case 'reload':
+					config = JSON.parse(fs.readFileSync("config.json"));
+				break;
+
 				case 'exit':
 					process.exit();
 				break;
 			}
 
-			console.log(JSON.stringify(newConfigChannel) + ' - Config channel added');
-			config.channels.push(newConfigChannel);
-			fs.writeFile("config.json", JSON.stringify(config), function(err) {
-				if(err) {
-					return console.log(err);
-				}
-				console.log(" - Config file saved successfully. [Source channel added.]");
-			});
+			if(tryParseJSON(JSON.stringify(newConfigChannel))){
+				
+				config.channels.push(newConfigChannel);
+
+				fs.writeFile("config.json", JSON.stringify(config), function(err) {
+					if(err) {
+						return console.log(err);
+					}
+					console.log('[' + new Date().toUTCString() + '] - Config file saved successfully. [Source channel added.]');
+				});	
+			}
 		}
 
 
@@ -142,3 +162,22 @@ function startBot(){
 }
 
 startBot();
+
+
+function tryParseJSON(jsonString){
+	try{
+		var o = JSON.parse(jsonString);
+		
+		if (o && typeof o === "object" && jsonString != "{}") {
+			return true;
+		}
+		else{
+			console.log('[' + new Date().toUTCString() + '] - Error saving config');
+		}
+    }
+    catch (ex){
+		console.log('[' + new Date().toUTCString() + '] - Error saving config');
+	}
+
+    return false;
+}

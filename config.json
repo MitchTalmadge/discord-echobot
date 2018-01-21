@@ -9,7 +9,7 @@
         },
         {
             "guild": "[GUILD NAME]",
-            "channel": "[GUILD CHANNEL]",
+            "channel": "[GUILD CHANNEL]"
         }
     ],
     "destChannel": "[DESTINATION CHANNEL ID]"
