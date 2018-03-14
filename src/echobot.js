@@ -3,8 +3,6 @@ console.log('[' + new Date().toUTCString() + '] - Loading...');
 const fs = require("fs");
 var config = JSON.parse(fs.readFileSync("config.json"));
 
-//console.log(config);
-
 const Discord = require('discord.js');
 
 
