@@ -1,4 +1,4 @@
-import { EchobotRedirect } from "./EchobotRedirect";
+import { EchobotRedirect } from "./echobot-redirect";
 
 /**
  * Represents the Echobot configuration file format.

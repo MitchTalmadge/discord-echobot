@@ -15,7 +15,7 @@ const winston = require('winston');
 // Import Discord.JS Library
 import * as discord from 'discord.js';
 import {Client, Message, TextChannel} from "discord.js";
-import {EchobotConfiguration} from './EchobotConfiguration';
+import {EchobotConfiguration} from './echobot-configuration';
 
 // Configure logger
 const logger = winston.createLogger({

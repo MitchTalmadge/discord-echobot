@@ -1,7 +1,9 @@
 config.json
 node_modules
 bin
+dist
 package-lock.json
+npm-debug.log
 .idea
 *.iml
 *.ipr

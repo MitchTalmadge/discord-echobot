@@ -15,13 +15,18 @@
       "web": "https://github.com/MitchTalmadge"
     }
   ],
+  "scripts": {
+    "build": "webpack --config webpack/webpack.config.js"
+  },
   "dependencies": {
     "discord.js": "^11.3.2",
     "winston": "^3.0.0-rc2"
   },
   "devDependencies": {
     "typescript": "^2.7.2",
-    "@types/node": "^9.4.7"
+    "@types/node": "^9.4.7",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
   },
   "repositories": [
     {
