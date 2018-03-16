@@ -176,7 +176,51 @@ function onDiscordClientMessageReceived(message: Message): void {
                 + " from " + message.guild.name + "/" + (message.channel as TextChannel).name
                 + " to " + destChannel.guild.name + "/" + destChannel.name
             );
-            (destChannel as TextChannel).send(message.content);
+
+            let messageContents = message.content;
+
+            // Remove @everyone if requested.
+            if (redirect.options && redirect.options.removeEveryone)
+                messageContents = messageContents.replace("@everyone", "");
+
+            // Determine if we are sending a rich embed or not. (This is decided by if a color is set).
+            if (redirect.options && redirect.options.richEmbedColor) {
+                // Sending a rich embed.
+                let richEmbed = new discord.RichEmbed({
+                    title: redirect.options.title ? redirect.options.title : "Call Made",
+                    color: redirect.options.richEmbedColor,
+                    description: messageContents
+                });
+
+                // Add source if requested.
+                if (redirect.options.includeSource) {
+                    richEmbed.addField("Source", message.guild.name + "/" + (message.channel as TextChannel).name);
+                }
+
+                // Send rich embed message.
+                (destChannel as TextChannel).send({embed: richEmbed});
+                return;
+            } else {
+                // Sending a standard message.
+                let destinationMessage = "";
+
+                // Add title if requested.
+                if (redirect.options && redirect.options.title) {
+                    destinationMessage += "**" + redirect.options.title + "**\n\n";
+                }
+
+                // Add copied message.
+                destinationMessage += messageContents;
+
+                // Add source if requested.
+                if (redirect.options && redirect.options.includeSource) {
+                    destinationMessage += "\n\n*Source: " + message.guild.name + "/" + (message.channel as TextChannel).name + "*";
+                }
+
+                // Send message.
+                (destChannel as TextChannel).send(destinationMessage);
+                return;
+            }
         });
     });
 }
