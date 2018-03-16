@@ -82,21 +82,31 @@ function loadConfiguration(): boolean {
             for (let redirect of config.redirects) {
 
                 // Check source.
-                if (!redirect.source) {
-                    logger['error']("A redirect is missing a source.");
+                if (!redirect.sources || redirect.sources.length == 0) {
+                    logger['error']("A redirect has no sources.");
+                    return false;
+                } else if (!Array.isArray(redirect.sources)) {
+                    logger['error']("A redirect's sources were not formatted as an array.");
                     return false;
                 }
 
                 // Check destination.
-                if (!redirect.dest) {
-                    logger['error']("A redirect is missing a destination.");
+                if (!redirect.destinations || redirect.destinations.length == 0) {
+                    logger['error']("A redirect has no destinations.");
+                    return false;
+                } else if (!Array.isArray(redirect.destinations)) {
+                    logger['error']("A redirect's destinations were not formatted as an array.");
                     return false;
                 }
 
                 // Check for loop.
-                if(redirect.source == redirect.dest) {
-                    logger['error']("A redirect's destination is the same as its source. This will result in an infinite loop.");
-                    return false;
+                for (let source of redirect.sources) {
+                    for (let destination of redirect.destinations) {
+                        if (source == destination) {
+                            logger['error']("A redirect has a source that is the same as a destination: " + source + ". This will result in an infinite loop.");
+                            return false;
+                        }
+                    }
                 }
             }
         }
@@ -141,24 +151,32 @@ function loginToDiscord(): void {
  */
 function onDiscordClientMessageReceived(message: Message): void {
 
-    // Find redirects matching this message's channel
-    let matchingRedirects = config.redirects.filter(redirect => redirect.source == message.channel.id);
+    // Find redirects that have this message's channel id as a source.
+    let matchingRedirects = config.redirects.filter(redirect =>
+        redirect.sources.some(source => source == message.channel.id)
+    );
 
-    // Redirect to each source.
+    // Redirect to each destination.
     matchingRedirects.forEach(redirect => {
+        redirect.destinations.forEach(destination => {
+            // Find destination channel.
+            let destChannel = discordClient.channels.get(destination);
+            if (destChannel == null) {
+                logger['error']("Could not redirect from channel ID " + message.channel.id + " to channel ID "
+                    + destination + ": Destination channel was not found.");
+                return;
+            } else if (!(destChannel instanceof TextChannel)) {
+                logger['error']("Could not redirect from channel ID " + message.channel.id + " to channel ID "
+                    + destination + ": Destination channel is not a text channel.");
+                return;
+            }
 
-        // Find destination channel.
-        let destChannel = discordClient.channels.get(redirect.dest);
-        if (destChannel == null) {
-            logger['error']("Could not redirect from channel ID " + redirect.source + " to channel ID " + redirect.dest + ": Destination channel was not found.");
-            return;
-        } else if (!(destChannel instanceof TextChannel)) {
-            logger['error']("Could not redirect from channel ID " + redirect.source + " to channel ID " + redirect.dest + ": Destination channel is not a text channel.");
-            return;
-        }
-
-        // Relay message.
-        logger['info']("Redirecting message by " + message.author.username + " from " + message.guild.name + "/" + (message.channel as TextChannel).name + " to " + destChannel.guild.name + "/" + destChannel.name);
-        (destChannel as TextChannel).send(message.content);
+            // Relay message.
+            logger['info']("Redirecting message by " + message.author.username
+                + " from " + message.guild.name + "/" + (message.channel as TextChannel).name
+                + " to " + destChannel.guild.name + "/" + destChannel.name
+            );
+            (destChannel as TextChannel).send(message.content);
+        });
     });
 }

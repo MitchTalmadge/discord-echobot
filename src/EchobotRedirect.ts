@@ -4,13 +4,13 @@
 export interface EchobotRedirect {
 
     /**
-     * The source channel ID, where messages will originate from.
+     * The source channel IDs, where messages will originate from.
      */
-    source?: string;
+    sources?: string[];
 
     /**
-     * The destination channel ID, where messages will be copied to.
+     * The destination channel IDs, where messages will be copied to.
      */
-    dest?: string;
+    destinations?: string[];
 
 }
