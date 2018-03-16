@@ -1,7 +1,7 @@
 {
   "name": "discord-echobot",
   "description": "A Node.js Discord Self-Bot to Copy Messages From One Channel to Another",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "contributors": [
     {
@@ -16,7 +16,8 @@
     }
   ],
   "scripts": {
-    "build": "webpack --config webpack/webpack.config.js"
+    "install": "tsc",
+    "start": "node ./bin/echobot.js"
   },
   "dependencies": {
     "discord.js": "^11.3.2",
@@ -24,9 +25,7 @@
   },
   "devDependencies": {
     "typescript": "^2.7.2",
-    "@types/node": "^9.4.7",
-    "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12"
+    "@types/node": "^9.4.7"
   },
   "repositories": [
     {
