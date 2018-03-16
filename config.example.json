@@ -1,16 +1,21 @@
 {
-    "token": "[YourDicord Self-Bot Token]",
-    "channels": [
-        {
-            "guild": "[GUILD NAME]",
-            "channel": "[GUILD CHANNEL]",
-            "color": "0xefff00",
-            "id": "[ID of Channel - Not Required]"
-        },
-        {
-            "guild": "[GUILD NAME]",
-            "channel": "[GUILD CHANNEL]"
-        }
-    ],
-    "destChannel": "[DESTINATION CHANNEL ID]"
+  "token": "mfa.yourtoken-shouldgoherejklsdfhsoiehfseihfseifbisoehfoisefise",
+  "redirects": [
+    {
+      "sources": [
+        "283746523864294373",
+        "293786491642983642"
+      ],
+      "destinations": [
+        "129863219696239848"
+      ],
+      "options": {
+        "title": "New Copied Message",
+        "richEmbedColor": 30975,
+        "includeSource": true,
+        "removeEveryone": true,
+        "removeHere": true
+      }
+    }
+  ]
 }
