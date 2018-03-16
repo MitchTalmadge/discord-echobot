@@ -17,7 +17,7 @@ To setup and run this bot, you must first [install Node.js](https://nodejs.org/e
 
 ## Running
 
-Open a command prompt or terminal in the extracted directory, and run `npm run`.
+Open a command prompt or terminal in the extracted directory, and run `npm start`.
 
 ## Finding your Token
 
