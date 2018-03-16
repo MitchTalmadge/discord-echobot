@@ -183,6 +183,10 @@ function onDiscordClientMessageReceived(message: Message): void {
             if (redirect.options && redirect.options.removeEveryone)
                 messageContents = messageContents.replace("@everyone", "");
 
+            // Remove @here if requested.
+            if (redirect.options && redirect.options.removeHere)
+                messageContents = messageContents.replace("@here", "");
+
             // Determine if we are sending a rich embed or not. (This is decided by if a color is set).
             if (redirect.options && redirect.options.richEmbedColor) {
                 // Sending a rich embed.

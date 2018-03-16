@@ -20,6 +20,11 @@ export interface EchobotRedirectOptions {
     removeEveryone?: boolean;
 
     /**
+     * Whether or not to remove the "@here" tag.
+     */
+    removeHere?: boolean;
+
+    /**
      * Whether or not to include the source of the call.
      */
     includeSource?: boolean;
