@@ -187,10 +187,14 @@ function onDiscordClientMessageReceived(message: Message): void {
             if (redirect.options && redirect.options.richEmbedColor) {
                 // Sending a rich embed.
                 let richEmbed = new discord.RichEmbed({
-                    title: redirect.options.title ? redirect.options.title : "Call Made",
                     color: redirect.options.richEmbedColor,
                     description: messageContents
                 });
+
+                // Add title if requested.
+                if(redirect.options.title) {
+                    richEmbed.setTitle(redirect.options.title);
+                }
 
                 // Add source if requested.
                 if (redirect.options.includeSource) {
