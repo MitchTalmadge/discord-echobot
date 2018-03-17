@@ -11,10 +11,12 @@
       ],
       "options": {
         "title": "New Copied Message",
+        "richEmbed": true,
         "richEmbedColor": 30975,
         "includeSource": true,
         "removeEveryone": true,
-        "removeHere": true
+        "removeHere": true,
+        "copyRichEmbed": true
       }
     }
   ]

@@ -14,7 +14,7 @@ const winston = require('winston');
 
 // Import Discord.JS Library
 import * as discord from 'discord.js';
-import {Client, Message, TextChannel} from "discord.js";
+import {Client, Message, RichEmbed, TextChannel} from "discord.js";
 import {EchobotConfiguration} from './echobot-configuration';
 
 // Configure logger
@@ -137,6 +137,13 @@ function loginToDiscord(): void {
     // Register event for when client receives a message.
     discordClient.on('message', onDiscordClientMessageReceived);
 
+    // Register event for when an error occurs.
+    discordClient.on('error', error => {
+        logger['error']("An error occurred: " + error.message);
+        logger['info']("Restarting Discord Client.");
+        loginToDiscord();
+    });
+
     // Login.
     discordClient
         .login(config.token)
@@ -179,6 +186,15 @@ function onDiscordClientMessageReceived(message: Message): void {
 
             let messageContents = message.content;
 
+            // Copy rich embed if requested.
+            if(redirect.options && redirect.options.copyRichEmbed) {
+                message.embeds.forEach(value => {
+                   if(value.type == "rich") {
+                       messageContents = value.description;
+                   }
+                });
+            }
+
             // Remove @everyone if requested.
             if (redirect.options && redirect.options.removeEveryone)
                 messageContents = messageContents.replace("@everyone", "");
@@ -188,10 +204,10 @@ function onDiscordClientMessageReceived(message: Message): void {
                 messageContents = messageContents.replace("@here", "");
 
             // Determine if we are sending a rich embed or not. (This is decided by if a color is set).
-            if (redirect.options && redirect.options.richEmbedColor) {
+            if (redirect.options && redirect.options.richEmbed) {
                 // Sending a rich embed.
                 let richEmbed = new discord.RichEmbed({
-                    color: redirect.options.richEmbedColor,
+                    color: redirect.options.richEmbedColor ? redirect.options.richEmbedColor : 30975,
                     description: messageContents
                 });
 

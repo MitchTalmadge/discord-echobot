@@ -24,8 +24,12 @@ export interface EchobotRedirect {
         title?: string;
 
         /**
-         * The color of the left border on the rich embed.
-         * If this variable is not set, a rich embed will not be used.
+         * Determines whether or not to use a rich embed or plain text.
+         */
+        richEmbed?: boolean;
+
+        /**
+         * The color of the left border on the rich embed, if enabled.
          */
         richEmbedColor?: number;
 
@@ -43,6 +47,11 @@ export interface EchobotRedirect {
          * Whether or not to include the source of the call.
          */
         includeSource?: boolean;
+
+        /**
+         * Whether or not to copy the contents of rich embed messages.
+         */
+        copyRichEmbed?: boolean;
 
     };
 
