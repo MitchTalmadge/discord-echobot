@@ -1,5 +1,7 @@
 # Discord Echobot
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 The purpose of this bot is to allow you to copy messages from one Discord channel to another Discord channel, even if you don't have permission to add a bot account to the guild you are copying from.
 
 This is done by turning your own Discord account into a bot -- copied messages are sent by _you_, not a bot.
