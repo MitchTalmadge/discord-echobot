@@ -1,0 +1,6 @@
+{
+  "name": "Discord Echobot",
+  "description": "A Node.js Discord Self-Bot to Copy Messages From One Channel to Another",
+  "repository": "https://github.com/MitchTalmadge/discord-echobot",
+  "keywords": ["nodejs", "discord-bot", "javascript", "typescript"]
+}
