@@ -47,6 +47,9 @@ let config: EchobotConfiguration = null;
 // Create global discord client variable.
 let discordClient: Client = null;
 
+// Keeps track of the last echo executed, to prevent duplicate messages
+let lastEcho = null;
+
 // Call the main function.
 main();
 
@@ -258,7 +261,10 @@ function onDiscordClientMessageReceived(message: Message): void {
                 }
 
                 // Send rich embed message.
-                (destChannel as TextChannel).send({embed: richEmbed});
+                if(lastEcho != richEmbed.description) {
+                    (destChannel as TextChannel).send({embed: richEmbed});
+                    lastEcho = richEmbed.description;
+                }
                 return;
             } else {
                 // Sending a standard message.
@@ -278,7 +284,10 @@ function onDiscordClientMessageReceived(message: Message): void {
                 }
 
                 // Send message.
-                (destChannel as TextChannel).send(destinationMessage);
+                if(lastEcho != destinationMessage) {
+                    (destChannel as TextChannel).send(destinationMessage);
+                    lastEcho = destinationMessage;
+                }
                 return;
             }
         });
