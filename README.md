@@ -17,6 +17,29 @@ To setup and run this bot, you must first [install Node.js](https://nodejs.org/e
 3. Create a file called `config.json` in the extracted directory and fill it out. You can see `config.example.json` for an example.
 4. Open a command prompt or terminal in the extracted directory, and run `npm install`.
 
+### Options
+
+* `title`: Displayed at the top of each message. Optional.
+  * ```"title": "New Copied Message"```
+
+* `richEmbed`: Whether or not to use rich embedding. Looks nicer, but has no support for displaying link metadata automatically (images, page details, etc). Users must click links instead.
+  * ```"richEmbed": true```
+
+* `richEmbedColor`: The color for the border of the rich embed if `richEmbed` is `true`. To choose the color, get the hex value (like #0078ff) and then go to google and type "0x0078ff to decimal" -> the number you get is what you want.
+  * ```"richEmbedColor": 30975```
+
+* `includeSource`: Whether to include a line at the bottom showing the server and channel that the message came from.
+  * ```"includeSource": true```
+
+* `removeEveryone`: Whether to remove all instances of `@everyone` in the messages. This prevents accidental mentioning.
+  * ```"removeEveryone": true```
+
+* `removeHere`: Same as `removeEveryone` except for `@here`.
+  * ```"removeHere": true```
+
+* `copyRichEmbed`: Sometimes a source message may include a rich embed of its own, with or without a normal, non-embed message. To copy to the rich embed message, this option must be true. The rich embed message will take precedence over the non-embed message. If that made no sense, juse keep this true.
+  * ```"copyRichEmbed": true```
+
 ## Running
 
 Open a command prompt or terminal in the extracted directory, and run `npm start`.
