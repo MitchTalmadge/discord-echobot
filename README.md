@@ -6,6 +6,8 @@ The purpose of this bot is to allow you to copy messages from one Discord channe
 
 This is done by turning your own Discord account into a bot -- copied messages are sent by _you_, not a bot.
 
+**NOTE:** Using this (or any) self-bot is **against Discord's [Terms of Service](https://discordapp.com/terms)** — use at your own risk!
+
 ## Requirements
 
 To setup and run this bot, you must first [install Node.js](https://nodejs.org/en/).
