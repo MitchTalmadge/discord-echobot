@@ -259,7 +259,7 @@ function onDiscordClientMessageReceived(message: Message): void {
 
                 // Add source if requested.
                 if (redirect.options.includeSource) {
-                    richEmbed.addField("Source", message.guild.name + "/" + (message.channel as TextChannel).name);
+                    richEmbed.addField("Author", `**${message.member.displayName}** in **${message.guild.name}/${(message.channel as TextChannel).name}**`);
                 }
 
                 // Send rich embed message.

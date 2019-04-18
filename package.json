@@ -1,7 +1,7 @@
 {
   "name": "discord-echobot",
   "description": "A Node.js Discord Self-Bot to Copy Messages From One Channel to Another",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "contributors": [
     {
