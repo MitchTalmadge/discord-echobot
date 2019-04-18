@@ -272,16 +272,18 @@ function onDiscordClientMessageReceived(message: Message): void {
 
                 // Add title if requested.
                 if (redirect.options && redirect.options.title) {
-                    destinationMessage += "**" + redirect.options.title + "**\n\n";
+                    destinationMessage += "**" + redirect.options.title + "**\n";
                 }
-
-                // Add copied message.
-                destinationMessage += messageContents;
 
                 // Add source if requested.
                 if (redirect.options && redirect.options.includeSource) {
-                    destinationMessage += "\n\n*Source: " + message.guild.name + "/" + (message.channel as TextChannel).name + "*";
+                    destinationMessage += `*Author: **${message.member.displayName}** in **${message.guild.name}/${(message.channel as TextChannel).name}***\n`;
                 }
+
+                destinationMessage += `\n`;
+
+                // Add copied message.
+                destinationMessage += messageContents;
 
                 // Send message.
                 if(lastEcho != destinationMessage) {
