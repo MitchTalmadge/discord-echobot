@@ -75,68 +75,70 @@ function main(): void {
  */
 function loadConfiguration(): boolean {
     if (fs.existsSync("config.json")) {
-        // Parse the config as JSON.
+        // Parse the file as JSON.
         config = JSON.parse(fs.readFileSync("config.json").toString());
+    } else if (process.env.ECHOBOT_CONFIG_JSON) {
+        // Parse the env var contents as JSON.
+        config = JSON.parse(process.env.ECHOBOT_CONFIG_JSON);
+    } else {
+        logger['error']("No configuration could be found. Either create a config.json file or put the config in the ECHOBOT_CONFIG_JSON environment variable.");
+        return false;
+    }
 
-        // Ensure the config has a Discord token defined.
-        if (!config.token) {
-            logger['error']("The Discord Client token is missing from the configuration file.");
-            return false;
-        }
+    // Ensure the config has a Discord token defined.
+    if (!config.token) {
+        logger['error']("The Discord Client token is missing from the configuration file.");
+        return false;
+    }
 
-        // Validate format of redirects
-        if (!config.redirects) { // Ensure redirects exist.
-            logger['error']("You have not defined any redirects. This bot is useless without them.");
-            return false;
-        } else if (!Array.isArray(config.redirects)) { // Ensure redirects is an array.
-            logger['error']("The redirects are not properly formatted (missing array). Please check your configuration.");
-            return false;
-        } else if (config.redirects.length == 0) { // Ensure we have at least one redirect.
-            logger['error']("You have not defined any redirects. This bot is useless without them.");
-            return false;
-        } else {
+    // Validate format of redirects
+    if (!config.redirects) { // Ensure redirects exist.
+        logger['error']("You have not defined any redirects. This bot is useless without them.");
+        return false;
+    } else if (!Array.isArray(config.redirects)) { // Ensure redirects is an array.
+        logger['error']("The redirects are not properly formatted (missing array). Please check your configuration.");
+        return false;
+    } else if (config.redirects.length == 0) { // Ensure we have at least one redirect.
+        logger['error']("You have not defined any redirects. This bot is useless without them.");
+        return false;
+    } else {
 
-            // Check each redirect.
-            for (let redirect of config.redirects) {
+        // Check each redirect.
+        for (let redirect of config.redirects) {
 
-                // Check source.
-                if (!redirect.sources || redirect.sources.length == 0) {
-                    logger['error']("A redirect has no sources.");
-                    return false;
-                } else if (!Array.isArray(redirect.sources)) {
-                    logger['error']("A redirect's sources were not formatted as an array.");
-                    return false;
-                }
+            // Check source.
+            if (!redirect.sources || redirect.sources.length == 0) {
+                logger['error']("A redirect has no sources.");
+                return false;
+            } else if (!Array.isArray(redirect.sources)) {
+                logger['error']("A redirect's sources were not formatted as an array.");
+                return false;
+            }
 
-                // Check destination.
-                if (!redirect.destinations || redirect.destinations.length == 0) {
-                    logger['error']("A redirect has no destinations.");
-                    return false;
-                } else if (!Array.isArray(redirect.destinations)) {
-                    logger['error']("A redirect's destinations were not formatted as an array.");
-                    return false;
-                }
+            // Check destination.
+            if (!redirect.destinations || redirect.destinations.length == 0) {
+                logger['error']("A redirect has no destinations.");
+                return false;
+            } else if (!Array.isArray(redirect.destinations)) {
+                logger['error']("A redirect's destinations were not formatted as an array.");
+                return false;
+            }
 
-                // Check for loop.
-                for (let source of redirect.sources) {
-                    for (let destination of redirect.destinations) {
-                        if (source == destination) {
-                            logger['error']("A redirect has a source that is the same as a destination: " + source + ". This will result in an infinite loop.");
-                            return false;
-                        }
+            // Check for loop.
+            for (let source of redirect.sources) {
+                for (let destination of redirect.destinations) {
+                    if (source == destination) {
+                        logger['error']("A redirect has a source that is the same as a destination: " + source + ". This will result in an infinite loop.");
+                        return false;
                     }
                 }
             }
         }
+    }
 
-        // Validation complete.
-        logger['info']("Configuration loaded successfully.");
-        return true;
-    }
-    else {
-        logger['error']("config.json does not exist! Please create a configuration file.");
-        return false;
-    }
+    // Validation complete.
+    logger['info']("Configuration loaded successfully.");
+    return true;
 }
 
 /**

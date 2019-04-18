@@ -16,7 +16,10 @@ To setup and run this bot, you must first [install Node.js](https://nodejs.org/e
 
 1. Download the [latest release](https://github.com/MitchTalmadge/discord-echobot/releases/latest) source code.
 2. Extract the source code to a folder of your choosing.
-3. Create a file called `config.json` in the extracted directory and fill it out. You can see `config.example.json` for an example.
+3. Configure the bot by **either**:
+    - Creating a file called `config.json` in the extracted directory and filling it out. You can see `config.example.json` for an example.
+    - **OR** (You can do both but the config file will always take precedence).
+    - Pasting the entire config JSON (what would normally be in your file) into the environment variable `ECHOBOT_CONFIG_JSON`.
 4. Open a command prompt or terminal in the extracted directory, and run `npm install`.
 
 ### Options
