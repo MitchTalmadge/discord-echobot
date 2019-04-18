@@ -30,7 +30,7 @@ To setup and run this bot, you must first [install Node.js](https://nodejs.org/e
 * `richEmbedColor`: The color for the border of the rich embed if `richEmbed` is `true`. To choose the color, get the hex value (like #0078ff) and then go to google and type "0x0078ff to decimal" -> the number you get is what you want.
   * ```"richEmbedColor": 30975```
 
-* `includeSource`: Whether to include a line at the bottom showing the server and channel that the message came from.
+* `includeSource`: Whether to include a line at the top showing the nickname, guild, and channel of the author who sent the message.
   * ```"includeSource": true```
 
 * `removeEveryone`: Whether to remove all instances of `@everyone` in the messages. This prevents accidental mentioning.
