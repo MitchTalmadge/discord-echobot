@@ -19,7 +19,7 @@
     "node": "12.16.1"
   },
   "scripts": {
-    "install": "tsc",
+    "build": "tsc",
     "start": "node ./bin/echobot.js"
   },
   "dependencies": {
