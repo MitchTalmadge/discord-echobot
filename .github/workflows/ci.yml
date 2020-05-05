@@ -1,0 +1,24 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  install_and_build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+    steps:
+      - name: Setup Environment for Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v1.1.0
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Checkout Repository
+        uses: actions/checkout@v1
+      
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
