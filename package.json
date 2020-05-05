@@ -15,6 +15,9 @@
       "web": "https://github.com/MitchTalmadge"
     }
   ],
+  "engines": {
+    "node": "12.16.1"
+  },
   "scripts": {
     "install": "tsc",
     "start": "node ./bin/echobot.js"
