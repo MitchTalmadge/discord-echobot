@@ -23,12 +23,12 @@
     "start": "node ./bin/echobot.js"
   },
   "dependencies": {
-    "discord.js": "^11.3.2",
-    "winston": "^3.0.0-rc2"
+    "discord.js": "^11.6.4",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
-    "typescript": "^2.7.2",
-    "@types/node": "^9.4.7"
+    "typescript": "^3.8.3",
+    "@types/node": "^13.13.4"
   },
   "repositories": [
     {

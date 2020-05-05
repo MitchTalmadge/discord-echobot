@@ -6,7 +6,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "outDir": "bin",
-    "sourceMap": true
+    "sourceMap": true,
   },
   "include": [
     "src/**/*"
