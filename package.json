@@ -20,7 +20,18 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "node ./bin/echobot.js"
+    "start": "node ./bin/echobot.js",
+    "debug": "nodemon ./src/echobot.ts"
+  },
+  "nodemonConfig": {
+    "delay": 1000,
+    "watch": [
+      "src"
+    ],
+    "execMap": {
+      "ts": "node --inspect -r ts-node/register"
+    },
+    "ext": "*"
   },
   "dependencies": {
     "discord.js": "^11.6.4",
@@ -28,7 +39,9 @@
   },
   "devDependencies": {
     "typescript": "^3.8.3",
-    "@types/node": "^13.13.4"
+    "@types/node": "^13.13.4",
+    "nodemon": "^2.0.3",
+    "ts-node": "^8.10.1"
   },
   "repositories": [
     {

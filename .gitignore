@@ -5,6 +5,7 @@ dist
 package-lock.json
 npm-debug.log
 .idea
+.vscode
 *.iml
 *.ipr
 *.iws
