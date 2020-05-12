@@ -16,7 +16,8 @@
         "includeSource": true,
         "removeEveryone": true,
         "removeHere": true,
-        "copyRichEmbed": true
+        "copyRichEmbed": true,
+        "copyAttachments": true
       }
     }
   ]
