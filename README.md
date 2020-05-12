@@ -1,7 +1,5 @@
 # Discord Echobot
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/MitchTalmadge/discord-echobot/tree/master)
-
 The purpose of this bot is to allow you to copy messages from one Discord channel to another Discord channel, even if you don't have permission to add a bot account to the guild you are copying from.
 
 This is done by turning your own Discord account into a bot -- copied messages are sent by _you_, not a bot.
@@ -79,12 +77,16 @@ Redirect sources and destinations use Channel IDs, which look like large numbers
 The ID will now be on your clipboard and can be pasted into the config.
 
 
-## Running
+## Deployment
 
-Open a command prompt or terminal in the extracted directory, and run `npm start`.
+### Run Locally
 
-## Heroku
+Open a command prompt or terminal in the extracted directory, and run `npm start`. You must have both `node` and `npm` installed.
 
-This bot is compatible with heroku. You can use the button at the top to deploy it. 
+### Heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/MitchTalmadge/discord-echobot/tree/master)
+
+This bot is compatible with Heroku. You can use the button above to deploy it quickly. 
 
 Use the `ECHOBOT_CONFIG_JSON` environment variable to create your config. Simply put everything that would normally be in the config.json file into this variable. Formatting does not matter.
