@@ -1,4 +1,7 @@
 # Discord Echobot
+[![GitHub license](https://img.shields.io/github/license/MitchTalmadge/discord-echobot)](https://github.com/MitchTalmadge/discord-echobot/blob/master/LICENSE.md)
+[![Actions Status](https://github.com/MitchTalmadge/discord-echobot/workflows/CI/badge.svg)](https://github.com/MitchTalmadge/discord-echobot/actions)
+[![GitHub issues](https://img.shields.io/github/issues/MitchTalmadge/discord-echobot)](https://github.com/MitchTalmadge/discord-echobot/issues)
 
 The purpose of this bot is to allow you to copy messages from one Discord channel to another Discord channel, even if you don't have permission to add a bot account to the guild you are copying from.
 
