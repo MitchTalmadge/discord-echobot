@@ -45,6 +45,9 @@ To setup and run this bot, you must first [install Node.js](https://nodejs.org/e
 * `copyRichEmbed`: Sometimes a source message may include a rich embed of its own, with or without a normal, non-embed message. To copy to the rich embed message, this option must be true. The rich embed message will take precedence over the non-embed message. If that made no sense, juse keep this true.
   * ```"copyRichEmbed": true```
 
+* `copyAttachments`: When true, the attached file of a message (pdf, image, gif, etc.) will be copied into the new message.
+  * ```"copyAttachments": true```
+
 ### Finding your Token
 
 This Discord bot is called a "self-bot," meaning it runs as your personal Discord account rather than a separate bot account.
