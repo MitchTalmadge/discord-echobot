@@ -28,6 +28,10 @@ import * as discord from 'discord.js';
 import {Client, Message, TextChannel} from "discord.js";
 import {EchobotConfiguration} from './model/configuration.model';
 import * as http from "http";
+import path = require("path");
+
+// Constants
+const imageExts = ["jpg", "jpeg", "png", "gif", "webp", "tif", "tiff", "bmp", "svg", "jif", "jfif", "apng"]
 
 // Configure logger
 const logger = winston.createLogger({
@@ -262,6 +266,18 @@ function onDiscordClientMessageReceived(message: Message): void {
                     richEmbed.addField("Author", `**${message.member.displayName}** in **${message.guild.name}/${(message.channel as TextChannel).name}**`);
                 }
 
+                // Add attachments if requested.
+                if(redirect.options.copyAttachments) {
+                    const originalAttachment = message.attachments.first();
+                    if(originalAttachment) {
+                        richEmbed.attachFile(new discord.Attachment(originalAttachment.url, originalAttachment.filename))
+                        
+                        const ext = path.extname(originalAttachment.url).toLowerCase().replace(".", "");
+                        if(ext && imageExts.includes(ext))
+                            richEmbed.setImage(`attachment://${originalAttachment.filename}`)
+                    }
+                }
+
                 // Send rich embed message.
                 if(lastEcho != richEmbed.description) {
                     (destChannel as TextChannel).send({embed: richEmbed});
@@ -287,9 +303,17 @@ function onDiscordClientMessageReceived(message: Message): void {
                 // Add copied message.
                 destinationMessage += messageContents;
 
+                // Add attachments if requested.
+                let attachment: discord.Attachment | undefined;
+                if(redirect.options.copyAttachments) {
+                    const originalAttachment = message.attachments.first();
+                    if(originalAttachment)
+                        attachment = new discord.Attachment(originalAttachment.url, originalAttachment.filename)
+                }
+
                 // Send message.
                 if(lastEcho != destinationMessage) {
-                    (destChannel as TextChannel).send(destinationMessage);
+                    (destChannel as TextChannel).send(destinationMessage, attachment);
                     lastEcho = destinationMessage;
                 }
                 return;

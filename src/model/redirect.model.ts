@@ -72,6 +72,11 @@ export interface EchobotRedirect {
          */
         copyRichEmbed?: boolean;
 
+        /**
+         * Whether or not to copy the attachments of a file (images, etc.)
+         */
+        copyAttachments?: boolean;
+
     };
 
 }
