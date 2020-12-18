@@ -9,17 +9,15 @@ This is done by turning your own Discord account into a bot -- copied messages a
 
 **NOTE:** Using this (or any) self-bot is **against Discord's [Terms of Service](https://discordapp.com/terms)** — use at your own risk!
 
-## Requirements
+## Deployment
+### Manual (Your laptop, a server, etc.)
 
 To setup and run this bot, you must first [install Node.js](https://nodejs.org/en/).
-
-## Setup
-### Local
 
 1. Download the [latest release](https://github.com/MitchTalmadge/discord-echobot/releases/latest) source code.
 2. Extract the source code to a folder of your choosing.
 3. Configure the bot by **either**:
-    - Creating a file called `config.json` in the extracted directory and filling it out. You can see `config.example.json` for an example.
+    - Creating a file called `config.json` in the extracted directory and filling it out. You can see `config.example.json` for an example. Scroll down to see what each option means.
     - **OR** Pasting the entire config JSON (what would normally be in your file) into the environment variable `ECHOBOT_CONFIG_JSON`. (You can do both but the config file will always take precedence).
       
 4. Open a command prompt or terminal in the extracted directory, and run `npm install`.
@@ -36,7 +34,7 @@ Use the `ECHOBOT_CONFIG_JSON` environment variable to create your config. Simply
 
 If the `PORT` environment variable is set (which may happen by default), then this bot will start a web server on that port and will reply `pong` to requests at `/ping`. This is useful because you can use a service like [UptimeRobot](https://uptimerobot.com/) to automatically send a request to the `/ping` endpoint to keep your app from sleeping on the Heroku free tier.
 
-### Options
+## Configuration
 
 All options are ... well.. optional. Defaults are listed for if you don't include them.
 
