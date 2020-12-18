@@ -77,6 +77,16 @@ export interface EchobotRedirect {
          */
         copyAttachments?: boolean;
 
+        /**
+         * The minimum number of characters required in the contents field for the message to be copied.
+         */
+        minLength?: number;
+
+        /**
+         * An array of Discord user IDs that are allowed to have their messages copied. Used for filtering.
+         */
+        allowList?: string[];
+
     };
 
 }

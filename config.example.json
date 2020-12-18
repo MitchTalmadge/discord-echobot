@@ -17,7 +17,9 @@
         "removeEveryone": true,
         "removeHere": true,
         "copyRichEmbed": true,
-        "copyAttachments": true
+        "copyAttachments": true,
+        "minLength": 0,
+        "allowList": []
       }
     }
   ]

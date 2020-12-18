@@ -25,29 +25,47 @@ To setup and run this bot, you must first [install Node.js](https://nodejs.org/e
 
 ### Options
 
-* `title`: Displayed at the top of each message. Optional.
-  * ```"title": "New Copied Message"```
+All options are ... well.. optional. Defaults are listed for if you don't include them.
 
-* `richEmbed`: Whether or not to use rich embedding. Looks nicer, but has no support for displaying link metadata automatically (images, page details, etc). Users must click links instead.
-  * ```"richEmbed": true```
+* `title`: Displayed at the top of each message.
+  * e.g. ```"title": "New Copied Message"```
+  * (Default empty)
+
+* `richEmbed`: Whether or not to use rich embedding. Basically it just looks nicer.
+  * e.g. ```"richEmbed": true```
+  * (Default `false`)
 
 * `richEmbedColor`: The color for the border of the rich embed if `richEmbed` is `true`. To choose the color, get the hex value (like #0078ff) and then go to google and type "0x0078ff to decimal" -> the number you get is what you want.
-  * ```"richEmbedColor": 30975```
+  * e.g. ```"richEmbedColor": 30975```
+  * (Default `30975`)
 
 * `includeSource`: Whether to include a line at the top showing the nickname, guild, and channel of the author who sent the message.
-  * ```"includeSource": true```
+  * e.g. ```"includeSource": true```
+  * (Default `false`)
 
 * `removeEveryone`: Whether to remove all instances of `@everyone` in the messages. This prevents accidental mentioning.
-  * ```"removeEveryone": true```
+  * e.g. ```"removeEveryone": true```
+  * (Default `false`)
 
 * `removeHere`: Same as `removeEveryone` except for `@here`.
-  * ```"removeHere": true```
+  * e.g. ```"removeHere": true```
+  * (Default `false`)
 
-* `copyRichEmbed`: Sometimes a source message may include a rich embed of its own, with or without a normal, non-embed message. To copy to the rich embed message, this option must be true. The rich embed message will take precedence over the non-embed message. If that made no sense, juse keep this true.
-  * ```"copyRichEmbed": true```
+* `copyRichEmbed`: Sometimes a source message may include a rich embed of its own, with or without a normal, non-embed message. This includes gifs. To copy to the rich embed message as well as the normal message contents, this option must be true. If that made no sense, just keep this true.
+  * e.g. ```"copyRichEmbed": true```
+  * (Default `false`)
 
-* `copyAttachments`: When true, the attached file of a message (pdf, image, gif, etc.) will be copied into the new message.
-  * ```"copyAttachments": true```
+* `copyAttachments`: When true, the attached files of a message (pdf, image (not gifs! see above), etc.) will be copied into the new message.
+  * e.g. ```"copyAttachments": true```
+  * (Default `false`)
+
+* `minLength`: The minimum number of characters required in a message body for it to be copied. Messages with embeds will always be copied if `copyRichEmbed` is true. Attachments (including pictures) will not be sent if message is too short and has no embeds. Set to `0` to disable.
+  * e.g. ```"minLength": 10```
+  * (Default `0`)
+
+* `allowList`: An array that contains the allowed author(s)' Discord IDs, from which the messages will be copied. Use this to filter whose messages will be copied from the channels. Set to an empty array to disable. The IDs must be in quotation marks.
+  * e.g. ```"allowList": ["37450973459793455", "94730497535793434"]```
+  * (Default `[]`)
 
 ### Finding your Token
 
