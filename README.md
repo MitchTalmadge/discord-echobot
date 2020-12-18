@@ -14,14 +14,27 @@ This is done by turning your own Discord account into a bot -- copied messages a
 To setup and run this bot, you must first [install Node.js](https://nodejs.org/en/).
 
 ## Setup
+### Local
 
 1. Download the [latest release](https://github.com/MitchTalmadge/discord-echobot/releases/latest) source code.
 2. Extract the source code to a folder of your choosing.
 3. Configure the bot by **either**:
     - Creating a file called `config.json` in the extracted directory and filling it out. You can see `config.example.json` for an example.
-    - **OR** (You can do both but the config file will always take precedence).
-    - Pasting the entire config JSON (what would normally be in your file) into the environment variable `ECHOBOT_CONFIG_JSON`.
+    - **OR** Pasting the entire config JSON (what would normally be in your file) into the environment variable `ECHOBOT_CONFIG_JSON`. (You can do both but the config file will always take precedence).
+      
 4. Open a command prompt or terminal in the extracted directory, and run `npm install`.
+5. Run `npm run build`
+6. Each time you want to start the bot, run `npm start`.
+
+### Heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/MitchTalmadge/discord-echobot/tree/master)
+
+This bot is compatible with Heroku. You can use the button above to deploy it quickly. 
+
+Use the `ECHOBOT_CONFIG_JSON` environment variable to create your config. Simply put everything that would normally be in the config.json file into this variable. Formatting does not matter.
+
+If the `PORT` environment variable is set (which may happen by default), then this bot will start a web server on that port and will reply `pong` to requests at `/ping`. This is useful because you can use a service like [UptimeRobot](https://uptimerobot.com/) to automatically send a request to the `/ping` endpoint to keep your app from sleeping on the Heroku free tier.
 
 ### Options
 
@@ -96,18 +109,3 @@ Redirect sources and destinations use Channel IDs, which look like large numbers
 6. Right click on any channel (only text channels are supported, not voice) and select `Copy ID`.
 
 The ID will now be on your clipboard and can be pasted into the config.
-
-
-## Deployment
-
-### Run Locally
-
-Open a command prompt or terminal in the extracted directory, and run `npm start`. You must have both `node` and `npm` installed.
-
-### Heroku
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/MitchTalmadge/discord-echobot/tree/master)
-
-This bot is compatible with Heroku. You can use the button above to deploy it quickly. 
-
-Use the `ECHOBOT_CONFIG_JSON` environment variable to create your config. Simply put everything that would normally be in the config.json file into this variable. Formatting does not matter.
