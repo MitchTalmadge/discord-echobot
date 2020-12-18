@@ -195,16 +195,6 @@ class EchoBot {
      * @param message The message that was received.
      */
     private async onDiscordClientMessageReceived(message: Discord.Message): Promise<void> {
-
-        if (message.content == "test") {
-            let embed = new Discord.RichEmbed({ title: "Upcoming MVPs", description: "```Next MVP in ...```" })
-            embed.addField("7:15PM", "Location: secret base")
-            embed.addField("7:45PM", "Location: awesome base")
-            embed.addField("10:00PM", "```Server reset```")
-            await message.channel.send("...", embed)
-            return
-        }
-
         // Find redirects that have this message's channel id as a source.
         let matchingRedirects = config.redirects.filter(redirect =>
             redirect.sources.some(source => source == message.channel.id)
