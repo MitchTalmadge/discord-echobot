@@ -20,8 +20,18 @@
   },
   "scripts": {
     "build": "tsc",
+    "build": "react-scripts build",
     "start": "node ./bin/echobot.js",
+    "start": "serve -s build",
     "debug": "nodemon ./src/echobot.ts"
+    "dev": "react-scripts start",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
+}
+
+    
+    
   },
   "nodemonConfig": {
     "delay": 1000,
